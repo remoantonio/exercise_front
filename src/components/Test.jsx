@@ -16,8 +16,8 @@ export default class Test extends Component {
         fetch("http://www.localhost:3003/workout", requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(result)
-                result = JSON.parse(result).exercises[0]
+                console.log(JSON.parse(result))
+                result = JSON.parse(result)[0]
                 this.setState({ workout: result })
             })
             .catch(error => console.log('error', error));
@@ -32,7 +32,7 @@ export default class Test extends Component {
             <div>
                 {this.state.workout.Exercise_Name}
                 <ReactPlayer
-                    url={this.state.workout.video_src} playing={true} loop={true}
+                    url={this.state.workout.video_src} playing={true} loop={true} volume = {0} muted = {true} alt={this.state.workout.Exercise_Name_Complete} title={this.state.workout.Exercise_Name_Complete}
                 />
                 {this.state.workout.Instructions_Execution}
             </div>
