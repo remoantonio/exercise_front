@@ -13,7 +13,7 @@ export default class Test extends Component {
             redirect: 'follow'
         };
 
-        fetch("http://www.localhost:3003/workout", requestOptions)
+        fetch("http://10.199.0.24:3003/workout", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result))
