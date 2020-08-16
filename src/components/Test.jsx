@@ -14,7 +14,7 @@ export default class Test extends Component {
             redirect: 'follow'
         };
 
-        fetch(REACT_APP_BASE_URL + "workout", requestOptions)
+        fetch(process.env.REACT_APP_BASE_URL + "workout", requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result))
