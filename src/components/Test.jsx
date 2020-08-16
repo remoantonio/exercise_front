@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactPlayer from "react-player";
+require('dotenv').config()
 
 export default class Test extends Component {
     state = {
