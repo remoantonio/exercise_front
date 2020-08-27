@@ -10,6 +10,7 @@ class App extends React.Component {
   }
   setUser = this.setUser.bind(this)
   increaseExp = this.increaseExp.bind(this)
+  logout = this.logout.bind(this)
 
   setUser(data) {
     this.setState({
@@ -36,7 +37,7 @@ class App extends React.Component {
       redirect: 'follow'
     };
 
-fetch("http://localhost:3003/exercise/experience", requestOptions)
+fetch(process.env.REACT_APP_BASE_URL + "exercise/experience", requestOptions)
   .then(response => response.json())
   .then(result => {
     localStorage.setItem('experience', result.experience)
@@ -47,6 +48,14 @@ fetch("http://localhost:3003/exercise/experience", requestOptions)
   .catch(error => console.log('error', error));
   }
 
+  logout() {
+    localStorage.clear()
+    this.setState({
+      currentUser: localStorage.getItem('currentUser'),
+      experience: localStorage.getItem('experience')
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -54,7 +63,9 @@ fetch("http://localhost:3003/exercise/experience", requestOptions)
         {this.state.currentUser == null ?
           (<>
             <UserCreate setUser={this.setUser} />
+            <br/>
             <UserLogin setUser={this.setUser} />
+            <br/>
           </>) :
           (<>
             <br />
@@ -64,6 +75,7 @@ fetch("http://localhost:3003/exercise/experience", requestOptions)
             }
             <br />
             <button onClick={this.increaseExp}>Complete Exercise</button>
+            <button onClick={this.logout}>Logout</button>
           </>)
         }
       </div>

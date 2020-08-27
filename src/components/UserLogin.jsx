@@ -31,7 +31,7 @@ export default class UserLogin extends Component {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3003/user/login", requestOptions)
+        fetch(process.env.REACT_APP_BASE_URL + "user/login", requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.message) {

@@ -38,7 +38,7 @@ export default class UserCreate extends Component {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3003/user/new", requestOptions)
+        fetch(process.env.REACT_APP_BASE_URL + "user/new", requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
